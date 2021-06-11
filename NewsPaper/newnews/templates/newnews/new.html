@@ -1,0 +1,11 @@
+{% extends 'newnews/default.html' %}
+{% load custom_filters %}
+
+{% block title %} New {% endblock title %}
+{% block content %}
+<h3>{{ new.Post_title }}</h3>
+<h4> {{ new.Post_text }} </h4>
+{{new.Post_time|date:'d-M-Y h:m:s'}}
+<br>Рейтинг:{{new.Post_rating}}
+
+{% endblock content %}

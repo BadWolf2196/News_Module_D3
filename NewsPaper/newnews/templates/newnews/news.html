@@ -1,0 +1,68 @@
+{% extends 'newnews/default.html' %}
+{% load custom_filters %}
+
+{{% block title %} News {% endblock title %}
+
+{% block content %}
+{% if is_not_authors %}
+<button> <a href="{% url 'upgrade' %}">Стать автором</a></button><br>
+{% endif %}
+
+
+    <h1>Все новости</h1>
+    <h3>Количество новостей всего: {{ news|length }}</h3>
+    <hr>
+    {% if news %}
+        <table>
+            <tr>
+                <td>
+                    <h4>Заголовок</h4>
+                </td>
+                <td>
+                    <h4>Автор</h4>
+                </td>
+                <td>
+                    <h4>Дата публикации</h4>
+                </td>
+                <td>
+                    <h4>Описание</h4>
+                </td>
+                <td>
+                    <h4>Тип</h4>
+                </td>
+                <td>
+                    <h4>Рейтинг</h4>
+                </td>
+
+
+            </tr>
+        {% for new in news %}
+            <tr>
+                <td>
+                    {{ new.Post_title }}
+                </td>
+                 <td>
+                    {{ new.author }}
+                </td>
+                <td>
+                    {{ new.Post_time|date:'d-M-Y h:m:s'}}
+                </td>
+                <td>
+                    {{ new.Post_text|truncatechars:50 }}
+                </td>
+                <td>
+                    {{ new.Post_type }}
+                </td>
+                <td>
+                    {{ new.Post_rating }}
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+{% if is_paginated %}
+
+
+{% endif %}
+{% endblock content %}
+
